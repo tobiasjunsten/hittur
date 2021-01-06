@@ -1,5 +1,13 @@
-class GameCard {
-  final name;
+import 'package:flutter/widgets.dart';
 
-  GameCard(this.name);
+class GameCard {
+  final int id;
+  final String name;
+  final int points;
+
+  GameCard({
+    @required this.id,
+    @required this.name,
+    @required this.points,
+  });
 }
