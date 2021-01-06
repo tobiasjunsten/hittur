@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hittur/pages/game_page.dart';
 import 'package:hittur/theme.dart';
 
@@ -26,17 +27,25 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'Hittur',
-              style: hitturTextTheme.title,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 80.0),
+              child: Text(
+                'Hittur',
+                style: GoogleFonts.pacifico(fontSize: 50),
+              ),
             ),
             RaisedButton(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => GamePage(),
-                  ));
-                },
-                child: Text('Nytt spel'))
+              color: Colors.black,
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => GamePage(),
+                ));
+              },
+              child: Text(
+                'Nytt spel',
+                style: TextStyle(color: Colors.white),
+              ),
+            )
           ],
         ),
       )),

@@ -126,7 +126,7 @@ ThemeData redButtonTheme = hitturTheme.copyWith(
   buttonTheme: redButtonThemeData,
   buttonColor: HitturColors.red,
   textTheme: hitturTheme.textTheme.copyWith(
-    button: hitturTheme.textTheme.subhead.copyWith(
+    button: hitturTheme.textTheme.subtitle1.copyWith(
       color: HitturColors.white,
     ),
   ),
@@ -176,43 +176,43 @@ ThemeData menuButtonTheme = hitturTheme.copyWith(
 );
 
 TextTheme hitturTextTheme = TextTheme(
-  display4: baseTextStyle.copyWith(
+  headline1: baseTextStyle.copyWith(
     fontSize: 96.0,
     fontWeight: light,
   ),
-  display3: baseTextStyle.copyWith(
+  headline2: baseTextStyle.copyWith(
     fontSize: 60.0,
     fontWeight: light,
     height: 72.0 / 60.0,
   ),
-  display2: baseTextStyle.copyWith(
+  headline3: baseTextStyle.copyWith(
     fontSize: 48.0,
     fontWeight: regular,
     height: 56.0 / 48.0,
   ),
-  display1: baseTextStyle.copyWith(
+  headline4: baseTextStyle.copyWith(
     fontSize: 34.0,
     fontWeight: regular,
   ),
-  headline: baseTextStyle.copyWith(
+  headline5: baseTextStyle.copyWith(
     fontSize: 24.0,
     fontWeight: regular,
   ),
-  title: baseTextStyle.copyWith(
+  headline6: baseTextStyle.copyWith(
     fontSize: 20.0,
     fontWeight: medium,
   ),
-  subhead: baseTextStyle.copyWith(
+  subtitle1: baseTextStyle.copyWith(
     fontSize: 16.0,
     fontWeight: medium,
     height: 24.0 / 16.0,
   ),
-  body2: baseTextStyle.copyWith(
+  bodyText1: baseTextStyle.copyWith(
     fontSize: 16.0,
     height: 28.0 / 16.0,
     fontWeight: regular,
   ),
-  body1: baseTextStyle.copyWith(
+  bodyText2: baseTextStyle.copyWith(
     fontSize: 14.0,
     height: 20.0 / 14.0,
     fontWeight: regular,
@@ -227,7 +227,7 @@ TextTheme hitturTextTheme = TextTheme(
     fontWeight: medium,
     color: HitturColors.white,
   ),
-  subtitle: baseTextStyle.copyWith(
+  subtitle2: baseTextStyle.copyWith(
     fontSize: 14.0,
     height: 20.0 / 14.0,
     fontWeight: medium,
@@ -315,8 +315,8 @@ ThemeData _dayTheme(
       ),
       scaffoldBackgroundColor: color[20],
       textTheme: hitturTextTheme.copyWith(
-        title: hitturTextTheme.title.copyWith(color: textColor),
+        headline6: hitturTextTheme.headline6.copyWith(color: textColor),
         button: hitturTextTheme.button.copyWith(color: textColor),
-        subhead: hitturTextTheme.subhead.copyWith(color: textColor),
+        subtitle1: hitturTextTheme.subtitle1.copyWith(color: textColor),
       ),
     );
