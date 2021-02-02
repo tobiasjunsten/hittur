@@ -1,28 +1,51 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'colors.dart';
 
-ThemeData hitturTheme = ThemeData(
-  scaffoldBackgroundColor: HitturColors.white[110],
+const double smallIconSize = 24,
+    buttonIconSize = 28,
+    defaultIconSize = 32,
+    hugeIconSize = 96;
+
+final hitturTheme = ThemeData(
+  primaryColorBrightness: Brightness.light,
+  scaffoldBackgroundColor: HitturColors.white110,
   primaryColor: HitturColors.black,
-  accentColor: HitturColors.red,
+  accentColor: HitturColors.black,
+  unselectedWidgetColor: HitturColors.white140,
   fontFamily: 'Roboto',
   inputDecorationTheme: inputDecorationTheme,
   textTheme: hitturTextTheme,
   buttonTheme: baseButtonTheme,
-  buttonColor: HitturColors.transparantBlack[20],
-  highlightColor: HitturColors.transparantBlack[40],
+  buttonColor: HitturColors.transparentBlack20,
+  highlightColor: HitturColors.transparentBlack40,
+  iconTheme: const IconThemeData(
+    size: defaultIconSize,
+    color: HitturColors.black,
+  ),
   cursorColor: HitturColors.black,
   textSelectionHandleColor: HitturColors.black,
-  appBarTheme: AppBarTheme(color: HitturColors.black[80]),
-  disabledColor: HitturColors.red[40],
+  appBarTheme: const AppBarTheme(color: HitturColors.black80),
+  disabledColor: HitturColors.red40,
   errorColor: HitturColors.red,
-  textSelectionColor: HitturColors.white[120],
-  bottomAppBarTheme: BottomAppBarTheme(color: HitturColors.black[80]),
+  textSelectionColor: HitturColors.white120,
+  bottomAppBarTheme: const BottomAppBarTheme(color: HitturColors.black80),
+  cupertinoOverrideTheme: const CupertinoThemeData(
+    primaryColor: HitturColors.black,
+  ),
+  toggleableActiveColor: HitturColors.green,
+  dividerTheme: const DividerThemeData(
+    color: HitturColors.white120,
+    endIndent: 12.0,
+    thickness: 1.0,
+    space: 0.0,
+  ),
 );
 
-InputDecorationTheme inputDecorationTheme = InputDecorationTheme(
-    contentPadding: const EdgeInsets.symmetric(vertical: 14.0, horizontal: 16),
+const InputDecorationTheme inputDecorationTheme = InputDecorationTheme(
+    contentPadding: EdgeInsets.symmetric(vertical: 14.0, horizontal: 16),
     focusedBorder: inputBorder,
     enabledBorder: inputBorder,
     errorBorder: redOutlineInputBorder,
@@ -32,10 +55,99 @@ InputDecorationTheme inputDecorationTheme = InputDecorationTheme(
     errorStyle: TextStyle(height: 0),
     fillColor: HitturColors.white);
 
-const BorderRadius borderRadius = BorderRadius.all(Radius.circular(12));
+const Radius radius = Radius.circular(12);
+const BorderRadius borderRadius = BorderRadius.all(radius);
+const BorderRadius borderRadiusRight = BorderRadius.only(
+  topRight: radius,
+  bottomRight: radius,
+);
+const BorderRadius borderRadiusLeft = BorderRadius.only(
+  topLeft: radius,
+  bottomLeft: radius,
+);
+const BorderRadius notUpperLeft = BorderRadius.only(
+  topRight: radius,
+  bottomRight: radius,
+  bottomLeft: radius,
+);
 
-OutlineInputBorder inputBorder = OutlineInputBorder(
-  borderSide: BorderSide(color: HitturColors.transparantBlack[15]),
+const BorderSide borderSide = BorderSide(color: HitturColors.white140);
+const Border currentActivityBorder =
+    Border.fromBorderSide(BorderSide(color: HitturColors.red, width: 2.0));
+const Border errorBorder =
+    Border.fromBorderSide(BorderSide(color: HitturColors.red));
+const borderGreen =
+    Border.fromBorderSide(BorderSide(color: HitturColors.green, width: 2.0));
+const borderOrange =
+    Border.fromBorderSide(BorderSide(color: HitturColors.orange40, width: 2.0));
+const border = Border.fromBorderSide(borderSide);
+const ligthShapeBorder = RoundedRectangleBorder(
+  borderRadius: borderRadius,
+  side: BorderSide(color: HitturColors.transparentWhite30),
+);
+const darkShapeBorder = RoundedRectangleBorder(
+  borderRadius: borderRadius,
+  side: BorderSide(color: HitturColors.transparentBlack30),
+);
+const BoxDecoration boxDecoration = BoxDecoration(
+  borderRadius: borderRadius,
+  border: border,
+);
+const BoxDecoration disabledBoxDecoration = BoxDecoration(
+  borderRadius: borderRadius,
+  color: HitturColors.transparentWhite40,
+);
+const BoxDecoration currentBoxDecoration = BoxDecoration(
+  color: HitturColors.white,
+  borderRadius: borderRadius,
+  border: currentActivityBorder,
+);
+const BoxDecoration whiteBoxDecoration = BoxDecoration(
+  color: HitturColors.white,
+  borderRadius: borderRadius,
+  border: border,
+);
+const BoxDecoration greenBoarderWhiteBoxDecoration = BoxDecoration(
+  color: HitturColors.white,
+  borderRadius: borderRadius,
+  border: borderGreen,
+);
+const BoxDecoration whiteNoBorderBoxDecoration = BoxDecoration(
+  color: HitturColors.white,
+  borderRadius: borderRadius,
+);
+const BoxDecoration warningBoxDecoration = BoxDecoration(
+  color: HitturColors.white,
+  borderRadius: borderRadius,
+  border: borderOrange,
+);
+const inactiveGrey = HitturColors.white110;
+const BoxDecoration inactiveBoxDecoration = BoxDecoration(
+  color: inactiveGrey,
+  borderRadius: borderRadius,
+  border: border,
+);
+const BoxDecoration errorBoxDecoration = BoxDecoration(
+  borderRadius: borderRadius,
+  border: errorBorder,
+);
+const BoxDecoration whiteErrorBoxDecoration = BoxDecoration(
+  color: HitturColors.white,
+  borderRadius: borderRadius,
+  border: errorBorder,
+);
+
+BoxDecoration getBoxDecoration(bool current, bool inactive) => inactive
+    ? inactiveBoxDecoration
+    : current
+        ? currentBoxDecoration
+        : whiteBoxDecoration;
+
+BoxDecoration selectedBoxDecoration(bool selected) =>
+    selected ? greenBoarderWhiteBoxDecoration : whiteBoxDecoration;
+
+const OutlineInputBorder inputBorder = OutlineInputBorder(
+  borderSide: borderSide,
   borderRadius: borderRadius,
 );
 
@@ -44,41 +156,43 @@ const OutlineInputBorder redOutlineInputBorder = OutlineInputBorder(
   borderRadius: borderRadius,
 );
 
+const OutlineInputBorder transparentOutlineInputBorder = OutlineInputBorder(
+  borderSide: BorderSide(color: Colors.transparent),
+  borderRadius: borderRadius,
+);
+
 const ButtonThemeData baseButtonTheme = ButtonThemeData(
   height: 64,
   minWidth: 48,
-  shape: RoundedRectangleBorder(borderRadius: borderRadius),
+  shape: ligthShapeBorder,
 );
 
 ButtonThemeData redButtonThemeData = baseButtonTheme.copyWith(
   minWidth: double.infinity,
   buttonColor: HitturColors.red,
-  disabledColor: HitturColors.red[40],
-  highlightColor: HitturColors.red[120],
+  disabledColor: HitturColors.red40,
+  highlightColor: HitturColors.red120,
 );
 
-ButtonThemeData greenButtonTheme = ButtonThemeData(
-  height: 48,
-  minWidth: 188,
-  shape: RoundedRectangleBorder(borderRadius: borderRadius),
+ButtonThemeData greenButtonThemeData = baseButtonTheme.copyWith(
+  minWidth: double.infinity,
   buttonColor: HitturColors.green,
-  disabledColor: HitturColors.green[40],
-  highlightColor: HitturColors.green[120],
+  disabledColor: HitturColors.green40,
+  highlightColor: HitturColors.green120,
 );
 
-ButtonThemeData checkButtonTheme = ButtonThemeData(
+const ButtonThemeData checkButtonThemeData = ButtonThemeData(
   height: 48,
   minWidth: 111,
-  shape: OutlineInputBorder(
-    borderSide: BorderSide(
-      color: HitturColors.transparantBlack[15],
-      width: 1,
-    ),
-    borderRadius: borderRadius,
-  ),
+  shape: darkShapeBorder,
   buttonColor: HitturColors.green,
-  disabledColor: HitturColors.green[40],
-  highlightColor: HitturColors.green[120],
+  disabledColor: HitturColors.green40,
+  highlightColor: HitturColors.green120,
+);
+
+ButtonThemeData uncheckButtonThemeData = checkButtonThemeData.copyWith(
+  buttonColor: HitturColors.transparentBlack20,
+  highlightColor: HitturColors.transparentBlack40,
 );
 
 ButtonThemeData actionButtonThemeData = baseButtonTheme.copyWith(
@@ -87,39 +201,29 @@ ButtonThemeData actionButtonThemeData = baseButtonTheme.copyWith(
 );
 
 ButtonThemeData lightActionButtonThemeData = actionButtonThemeData.copyWith(
-  buttonColor: HitturColors.transparantWhite[20],
-  highlightColor: HitturColors.transparantWhite[40],
-  shape: OutlineInputBorder(
-    borderSide: BorderSide(
-      color: HitturColors.transparantWhite[15],
-      width: 1,
-    ),
-    borderRadius: borderRadius,
-  ),
+  buttonColor: HitturColors.white,
+  highlightColor: HitturColors.transparentWhite40,
+  disabledColor: Colors.transparent,
+  shape: ligthShapeBorder,
 );
 
 ButtonThemeData darkActionButtonThemeData = baseButtonTheme.copyWith(
-  buttonColor: HitturColors.transparantBlack[20],
-  highlightColor: HitturColors.transparantBlack[40],
-  shape: OutlineInputBorder(
-    borderSide: BorderSide(
-      color: HitturColors.transparantBlack[15],
-      width: 1,
-    ),
-    borderRadius: borderRadius,
-  ),
+  buttonColor: HitturColors.black,
+  highlightColor: HitturColors.transparentBlack40,
+  shape: darkShapeBorder,
 );
 
 ThemeData darkButtonTheme = hitturTheme.copyWith(
-    buttonTheme: darkActionButtonThemeData,
-    textTheme: hitturTheme.textTheme.copyWith(
-        button: hitturTheme.textTheme.button
-            .copyWith(color: HitturColors.black[75])),
-    buttonColor: HitturColors.transparantBlack[20]);
+  buttonTheme: darkActionButtonThemeData,
+  textTheme: hitturTheme.textTheme.copyWith(
+      button: hitturTheme.textTheme.button.copyWith(color: HitturColors.black)),
+  buttonColor: HitturColors.transparentBlack20,
+);
 
 ThemeData lightButtonTheme = hitturTheme.copyWith(
   buttonTheme: lightActionButtonThemeData,
-  buttonColor: HitturColors.transparantWhite[20],
+  buttonColor: HitturColors.transparentWhite20,
+  disabledColor: HitturColors.transparentWhite40,
 );
 
 ThemeData redButtonTheme = hitturTheme.copyWith(
@@ -132,19 +236,35 @@ ThemeData redButtonTheme = hitturTheme.copyWith(
   ),
 );
 
+ThemeData greenButtonTheme = hitturTheme.copyWith(
+  buttonTheme: greenButtonThemeData,
+  buttonColor: HitturColors.green,
+  disabledColor: HitturColors.green40,
+  iconTheme: IconThemeData(
+    size: buttonIconSize,
+    color: HitturColors.white,
+  ),
+);
+
+ThemeData greyButtonTheme = hitturTheme.copyWith(
+  buttonColor: HitturColors.transparentWhite20,
+  scaffoldBackgroundColor: HitturColors.black80,
+  iconTheme: IconThemeData(
+    size: buttonIconSize,
+    color: HitturColors.white,
+  ),
+);
+
 ThemeData nowButtonTheme = redButtonTheme.copyWith(
   buttonTheme: redButtonThemeData.copyWith(
-    shape: OutlineInputBorder(
-      borderSide: BorderSide(
-        color: HitturColors.red[120],
-        width: 1,
-      ),
+    shape: const RoundedRectangleBorder(
+      side: BorderSide(color: HitturColors.red120),
       borderRadius: borderRadius,
     ),
   ),
   buttonColor: HitturColors.red,
-  disabledColor: HitturColors.red[40],
-  highlightColor: HitturColors.red[120],
+  disabledColor: HitturColors.red40,
+  highlightColor: HitturColors.red120,
   textTheme: hitturTextTheme.copyWith(
     button: hitturTextTheme.button.copyWith(color: HitturColors.white),
   ),
@@ -162,161 +282,90 @@ ThemeData availableToSelectButtonTheme = hitturTheme.copyWith(
     textTheme: hitturTextTheme.copyWith(
         button: hitturTextTheme.button.copyWith(color: HitturColors.black)));
 
-ThemeData menuButtonTheme = hitturTheme.copyWith(
-  buttonTheme: lightActionButtonThemeData.copyWith(
-    shape: RoundedRectangleBorder(
-      borderRadius: borderRadius,
-      side: BorderSide(
-        width: 1,
-        color: HitturColors.transparantWhite[15],
-      ),
+ThemeData bottomNavigationBarTheme = hitturTheme.copyWith(
+  buttonTheme: lightActionButtonThemeData.copyWith(shape: ligthShapeBorder),
+  buttonColor: HitturColors.transparentWhite20,
+  iconTheme: IconThemeData(size: defaultIconSize),
+);
+
+final hitturTextTheme = GoogleFonts.robotoTextTheme(
+  TextTheme(
+    headline1: TextStyle(
+      color: HitturColors.black,
+      fontSize: 96.0,
+      fontWeight: light,
+    ),
+    headline2: TextStyle(
+      color: HitturColors.black,
+      fontSize: 60.0,
+      fontWeight: light,
+      height: 72.0 / 60.0,
+    ),
+    headline3: TextStyle(
+      color: HitturColors.black,
+      fontSize: 48.0,
+      fontWeight: regular,
+      height: 56.0 / 48.0,
+    ),
+    headline4: TextStyle(
+      color: HitturColors.black,
+      fontSize: 34.0,
+      fontWeight: regular,
+    ),
+    headline5: TextStyle(
+      color: HitturColors.black,
+      fontSize: 24.0,
+      fontWeight: regular,
+    ),
+    headline6: TextStyle(
+      color: HitturColors.black,
+      fontSize: 20.0,
+      fontWeight: medium,
+    ),
+    subtitle1: TextStyle(
+      color: HitturColors.black,
+      fontSize: 16.0,
+      fontWeight: medium,
+      height: 24.0 / 16.0,
+    ),
+    subtitle2: TextStyle(
+      color: HitturColors.black,
+      fontSize: 14.0,
+      fontWeight: medium,
+      height: 24.0 / 14.0,
+    ),
+    bodyText1: TextStyle(
+      color: HitturColors.black,
+      fontSize: 16.0,
+      fontWeight: regular,
+      height: 28.0 / 16.0,
+    ),
+    bodyText2: TextStyle(
+      color: HitturColors.black,
+      fontSize: 14.0,
+      fontWeight: regular,
+      height: 20.0 / 14.0,
+    ),
+    caption: TextStyle(
+      color: HitturColors.black,
+      fontSize: 12.0,
+      fontWeight: regular,
+      height: 16.0 / 12.0,
+    ),
+    button: TextStyle(
+      color: HitturColors.white,
+      fontSize: 16.0,
+      fontWeight: regular,
+      height: 1,
+    ),
+    overline: TextStyle(
+      fontSize: 10.0,
+      fontWeight: medium,
+      height: 16.0 / 10.0,
     ),
   ),
-  buttonColor: HitturColors.transparantWhite[20],
-);
-
-TextTheme hitturTextTheme = TextTheme(
-  headline1: baseTextStyle.copyWith(
-    fontSize: 96.0,
-    fontWeight: light,
-  ),
-  headline2: baseTextStyle.copyWith(
-    fontSize: 60.0,
-    fontWeight: light,
-    height: 72.0 / 60.0,
-  ),
-  headline3: baseTextStyle.copyWith(
-    fontSize: 48.0,
-    fontWeight: regular,
-    height: 56.0 / 48.0,
-  ),
-  headline4: baseTextStyle.copyWith(
-    fontSize: 34.0,
-    fontWeight: regular,
-  ),
-  headline5: baseTextStyle.copyWith(
-    fontSize: 24.0,
-    fontWeight: regular,
-  ),
-  headline6: baseTextStyle.copyWith(
-    fontSize: 20.0,
-    fontWeight: medium,
-  ),
-  subtitle1: baseTextStyle.copyWith(
-    fontSize: 16.0,
-    fontWeight: medium,
-    height: 24.0 / 16.0,
-  ),
-  bodyText1: baseTextStyle.copyWith(
-    fontSize: 16.0,
-    height: 28.0 / 16.0,
-    fontWeight: regular,
-  ),
-  bodyText2: baseTextStyle.copyWith(
-    fontSize: 14.0,
-    height: 20.0 / 14.0,
-    fontWeight: regular,
-  ),
-  caption: baseTextStyle.copyWith(
-    fontSize: 12.0,
-    height: 16.0 / 12.0,
-    fontWeight: regular,
-  ),
-  button: baseTextStyle.copyWith(
-    fontSize: 14.0,
-    fontWeight: medium,
-    color: HitturColors.white,
-  ),
-  subtitle2: baseTextStyle.copyWith(
-    fontSize: 14.0,
-    height: 20.0 / 14.0,
-    fontWeight: medium,
-  ),
-  overline: baseTextStyle.copyWith(
-    fontSize: 10.0,
-    height: 16.0 / 10.0,
-    fontWeight: medium,
-  ),
-);
-
-const TextStyle baseTextStyle = TextStyle(
-  fontFamily: 'Roboto',
-  color: HitturColors.black,
-  fontStyle: FontStyle.normal,
-  letterSpacing: 0.0,
 );
 
 const FontWeight light = FontWeight.w300;
 const FontWeight regular = FontWeight.w400;
 const FontWeight medium = FontWeight.w500;
-
-const Map<int, MaterialColor> weekDayColor = {
-  DateTime.monday: HitturColors.green,
-  DateTime.tuesday: HitturColors.darkBlue,
-  DateTime.wednesday: HitturColors.white,
-  DateTime.thursday: HitturColors.brown,
-  DateTime.friday: HitturColors.yellow,
-  DateTime.saturday: HitturColors.pink,
-  DateTime.sunday: HitturColors.red,
-};
-
-Map<int, ThemeData> weekDayTheme = {
-  DateTime.monday: _dayTheme(
-    darkButtonTheme,
-    weekDayColor[DateTime.monday],
-    textColor: HitturColors.black,
-    primaryColor: HitturColors.white,
-  ),
-  DateTime.tuesday: _dayTheme(
-    lightButtonTheme,
-    weekDayColor[DateTime.tuesday],
-    appBarBrightness: Brightness.dark,
-  ),
-  DateTime.wednesday: _dayTheme(
-    darkButtonTheme,
-    weekDayColor[DateTime.wednesday],
-    textColor: HitturColors.black,
-  ),
-  DateTime.thursday: _dayTheme(
-    lightButtonTheme,
-    weekDayColor[DateTime.thursday],
-    appBarBrightness: Brightness.dark,
-  ),
-  DateTime.friday: _dayTheme(
-    darkButtonTheme,
-    weekDayColor[DateTime.friday],
-    textColor: HitturColors.black,
-    primaryColor: HitturColors.white,
-  ),
-  DateTime.saturday: _dayTheme(
-    darkButtonTheme,
-    weekDayColor[DateTime.saturday],
-    textColor: HitturColors.black,
-  ),
-  DateTime.sunday: _dayTheme(
-    lightButtonTheme,
-    weekDayColor[DateTime.sunday],
-    appBarBrightness: Brightness.dark,
-  ),
-};
-
-ThemeData _dayTheme(
-  ThemeData themeData,
-  MaterialColor color, {
-  MaterialColor textColor = HitturColors.white,
-  MaterialColor primaryColor = HitturColors.black,
-  Brightness appBarBrightness = Brightness.light,
-}) =>
-    themeData.copyWith(
-      primaryColor: primaryColor,
-      appBarTheme: hitturTheme.appBarTheme.copyWith(
-        color: color,
-        brightness: appBarBrightness,
-      ),
-      scaffoldBackgroundColor: color[20],
-      textTheme: hitturTextTheme.copyWith(
-        headline6: hitturTextTheme.headline6.copyWith(color: textColor),
-        button: hitturTextTheme.button.copyWith(color: textColor),
-        subtitle1: hitturTextTheme.subtitle1.copyWith(color: textColor),
-      ),
-    );

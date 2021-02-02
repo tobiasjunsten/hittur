@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 class GameCard {
-  final int id;
+  final String id;
   final String name;
   final int points;
 

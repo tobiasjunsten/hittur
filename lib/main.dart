@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hittur/bloc/providers.dart';
+import 'package:hittur/model/all.dart';
 import 'package:hittur/pages/game_page.dart';
-import 'package:hittur/theme.dart';
+
+import 'all.dart';
+import 'bloc/all.dart';
 
 void main() => runApp(App());
 
@@ -11,7 +16,10 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Hittur',
       theme: hitturTheme,
-      home: HomePage(),
+      home: BlocProvider<GameBloc>(
+        create: (context) => GameBloc(),
+        child: HomePage(),
+      ),
     );
   }
 }
@@ -37,8 +45,13 @@ class HomePage extends StatelessWidget {
             RaisedButton(
               color: Colors.black,
               onPressed: () {
+                BlocProvider.of<GameBloc>(context)
+                    .add(StartGame(standardCards));
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => GamePage(),
+                  builder: (c) => CopiedProviders(
+                    child: GamePage(),
+                    blocContext: context,
+                  ),
                 ));
               },
               child: Text(
