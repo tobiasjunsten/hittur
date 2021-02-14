@@ -10,11 +10,17 @@ abstract class GameEvent extends Equatable {
 class StartGame extends GameEvent {
   final List<GameCard> cards;
 
-  StartGame(this.cards);
+  const StartGame(this.cards);
 }
 
 class CardFound extends GameEvent {
   final String foundCardId;
 
-  CardFound(this.foundCardId);
+  const CardFound(this.foundCardId);
+}
+
+class RegretCardFound extends GameEvent {
+  final String cardId;
+
+  const RegretCardFound(this.cardId);
 }

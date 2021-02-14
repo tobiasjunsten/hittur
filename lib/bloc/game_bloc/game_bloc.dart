@@ -19,6 +19,10 @@ class GameBloc extends Bloc<GameEvent, GameState> {
     } else if (event is CardFound) {
       yield GameStarted(
           state.gameCards, [...state.foundCards, event.foundCardId]);
+    } else if (event is RegretCardFound) {
+      final foundCards = List<String>.from(state.foundCards)
+        ..remove(event.cardId);
+      yield GameStarted(state.gameCards, foundCards);
     }
   }
 }

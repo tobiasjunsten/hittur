@@ -7,10 +7,15 @@ abstract class GameState extends Equatable {
 
   @override
   List<Object> get props => [];
+
+  int totalPoints();
 }
 
 class GameInitial extends GameState {
   GameInitial() : super([], []);
+
+  @override
+  int totalPoints() => 0;
 }
 
 class GameStarted extends GameState {
@@ -21,4 +26,12 @@ class GameStarted extends GameState {
 
   @override
   List<Object> get props => [gameCards, foundCards];
+
+  @override
+  int totalPoints() {
+    return gameCards.fold(
+        0,
+        (prev, card) =>
+            foundCards.contains(card.id) ? prev + card.points : prev);
+  }
 }

@@ -1,67 +1,46 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:hittur/theme.dart';
-
-import 'all.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hittur/all.dart';
+import 'package:hittur/bloc/all.dart';
 
 class HitturAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final String title;
-  final IconData iconData;
-  final Widget trailing;
-  final PreferredSizeWidget bottom;
-
   @override
   final Size preferredSize;
 
   HitturAppBar({
     Key key,
-    @required this.title,
-    @required this.iconData,
-    this.bottom,
-    this.trailing,
-  })  : preferredSize =
-            Size.fromHeight(68.0 + (bottom?.preferredSize?.height ?? 0.0)),
+  })  : preferredSize = Size.fromHeight(68.0),
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Widget content = AppBarHeading(
-      text: title,
-      iconData: iconData,
-    );
-    if (bottom != null) {
-      content = Column(
-        children: [
-          Expanded(child: content),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: bottom,
-          ),
-        ],
-      );
-    } else {
-      content = Center(child: content);
-    }
-    if (trailing != null) {
-      content = Stack(
-        children: [
-          content,
-          Align(
-            alignment: Alignment.centerRight,
-            child: trailing,
-          )
-        ],
-      );
-    }
-
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.light,
-      child: Theme(
-        data: lightButtonTheme,
-        child: Container(
-          decoration: BoxDecoration(color: Theme.of(context).appBarTheme.color),
-          child: SafeArea(
-            child: content,
+    return Container(
+      height: 68,
+      decoration: BoxDecoration(color: Theme.of(context).appBarTheme.color),
+      child: SafeArea(
+        child: IconTheme(
+          data: Theme.of(context).iconTheme.copyWith(
+                color: HitturColors.white,
+              ),
+          child: DefaultTextStyle(
+            style: hitturTextTheme.headline5.copyWith(
+              color: HitturColors.white,
+              fontSize: 22.0,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 18.0),
+              child: Row(
+                children: [
+                  Text('Poäng:'),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  BlocBuilder<GameBloc, GameState>(builder: (context, state) {
+                    return Text(state.totalPoints().toString());
+                  })
+                ],
+              ),
+            ),
           ),
         ),
       ),

@@ -14,10 +14,7 @@ class GamePage extends StatelessWidget {
     return BlocBuilder<GameBloc, GameState>(builder: (context, state) {
       final cards = state.gameCards;
       return Scaffold(
-        appBar: HitturAppBar(
-          iconData: Icons.audiotrack,
-          title: 'Yay',
-        ),
+        appBar: HitturAppBar(),
         body: PageView.builder(
           controller: controller,
           itemBuilder: (BuildContext context, int index) {
@@ -54,10 +51,13 @@ class GamePage extends StatelessWidget {
                         child: RaisedButton(
                           textColor: Colors.white,
                           color: Colors.pink,
-                          child: Text('Hittur'),
+                          child: found ? Text("Ångra Hittur") : Text('Hittur'),
                           onPressed: () {
-                            BlocProvider.of<GameBloc>(context)
-                                .add(CardFound(card.id));
+                            found
+                                ? BlocProvider.of<GameBloc>(context)
+                                    .add(RegretCardFound(card.id))
+                                : BlocProvider.of<GameBloc>(context)
+                                    .add(CardFound(card.id));
                           },
                         ),
                       )
@@ -78,7 +78,7 @@ class GamePage extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: Text('Tillbaka'),
+                    child: Text('Avsluta'),
                   )
                 ],
               ),
